@@ -8,6 +8,8 @@ import Profile from './pages/Profile';
 import DashboardLayout from './pages/DashboardLayout';
 import Header from './components/Global/Header';
 import Footer from './components/Global/Footer';
+import Dashboard from './pages/Dashboard';
+import Chat from './pages/Chat';
 
 function App() {
   return (
@@ -25,6 +27,7 @@ function App() {
         <Route path="/teacher" element={<TeacherRegister />} />
         <Route path="/layout" element={<DashboardLayout />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path='/chat' element={<Chat />} />
       </Routes>
     </BrowserRouter>
   );
