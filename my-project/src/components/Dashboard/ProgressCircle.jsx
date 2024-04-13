@@ -1,5 +1,6 @@
 import { Box, useTheme } from "@mui/material";
 import { tokens } from "../../assets/theme";
+import { PieChart } from '@mui/x-charts/PieChart';
 
 const ProgressCircle = ({ progress = "0.75", size = "40" }) => {
   const theme = useTheme();
