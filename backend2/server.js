@@ -168,6 +168,58 @@ app.post("/saveQuizResponses", async (req, res) => {
 });
 
 
+// teacher schema:
+const teacherSchema = new mongoose.Schema({
+  fname: String,
+  lname: String,
+  email: { type: String, unique: true },
+  username: String,
+  password: String,
+  code: String,
+});
+
+const Teacher = mongoose.model("Teacher", teacherSchema);
+
+// auth for teacher registration:
+app.post("/registerTeacher", async (req, res) => {
+  const { fname, lname, email, username, password, code } = req.body;
+  try {
+    const existingUser = await
+        Teacher.findOne({ email });
+    if (existingUser) {
+        return res.status(400).json({ status: "error", message: "Email already exists" });
+        }
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const newTeacher = new Teacher({
+        fname,
+        lname,
+        email,
+        username,
+        password: hashedPassword,
+        code,
+    });
+
+    const newUser = new User({
+        fname,
+        lname,
+        email,
+        username,
+        password: hashedPassword,
+    });
+
+    await newTeacher.save();
+    await newUser.save();
+    res.json({ status: "success", user: newUser });
+    }
+    catch (error) {
+        console.error("Registration failed:", error);
+        alert("Email already in use");
+        res.status(400).json({ status: "error", error: error.message });
+    }
+}
+);
+
+
 app.get("/check-login", (req, res) => {
   console.log(req);
   if (req.session.user.email) {
@@ -196,9 +248,6 @@ app.post("/uploadResults", async (req, res) => {
     res.status(500).json({ status: "error", error: error.message });
   }
 });
-
-
-
 
 app.listen(7000, () => {
   console.log("Server is running on port 7000");
