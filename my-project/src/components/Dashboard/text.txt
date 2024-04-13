@@ -1,0 +1,4 @@
+parents entering their marks instead of students to ensure transparency 
+no strengths of teachers shown to students
+notification system for recommendations
+rocketChat api for integrating chat between students and teacher
