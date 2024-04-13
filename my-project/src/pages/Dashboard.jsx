@@ -33,7 +33,6 @@ const Dashboard = () => {
             gridRow="span 2"
             backgroundColor={colors.primary[400]}
             style={{ paddingBottom: "40px", borderRadius: '20px' }}
-
           >
             <Box
               mt="25px"
@@ -48,22 +47,8 @@ const Dashboard = () => {
                   fontWeight="600"
                   color={colors.grey[100]}
                 >
-                  Revenue Generated
+                  Perfomance Over Years
                 </Typography>
-                <Typography
-                  variant="h3"
-                  fontWeight="bold"
-                  color={colors.greenAccent[500]}
-                >
-                  $59,342.32
-                </Typography>
-              </Box>
-              <Box>
-                <IconButton>
-                  <DownloadOutlinedIcon
-                    sx={{ fontSize: "26px", color: colors.greenAccent[500] }}
-                  />
-                </IconButton>
               </Box>
             </Box>
             <Box height="250px" m="-35px 0 0 0">
@@ -76,6 +61,7 @@ const Dashboard = () => {
             gridRow="span 2"
             backgroundColor={colors.primary[400]}
             overflow="auto"
+            style={{borderRadius: '20px',}}
           >
             <Box
               display="flex"
@@ -83,14 +69,15 @@ const Dashboard = () => {
               alignItems="center"
               borderBottom={`4px solid ${colors.primary[500]}`}
               colors={colors.grey[100]}
-              p="20px"
+              p="4.3%"
+              style={{height: '22.2%'}}
             >
               <Typography
                 color={colors.grey[100]}
                 variant="h5"
                 fontWeight="600"
               >
-                Recent Transactions
+                Test
               </Typography>
             </Box>
             {mockTransactions.map((transaction, i) => (
@@ -109,20 +96,16 @@ const Dashboard = () => {
                     variant="h5"
                     fontWeight="600"
                   >
-                    {transaction.txId}
-                  </Typography>
-                  <Typography color={colors.grey[100]}>
-                    {transaction.user}
+                    {`Test ${transaction.txId}`}
                   </Typography>
                 </Box>
-                <Box color={colors.grey[100]}>{transaction.date}</Box>
-                <Box
+                <button
                   backgroundColor={colors.greenAccent[500]}
                   p="5px 10px"
                   borderRadius="4px"
                 >
-                  ${transaction.cost}
-                </Box>
+                  Attempt
+                </button>
               </Box>
             ))}
           </Box>
@@ -152,7 +135,6 @@ const Dashboard = () => {
                 $48,352 revenue generated
               </Typography>
               <Typography style={{color: 'black'}}>
-                Includes extra misc expenditures and costs
               </Typography>
             </Box>
           </Box>
@@ -168,7 +150,7 @@ const Dashboard = () => {
               sx={{ padding: "30px 30px 0 30px" }}
               style={{color: 'black'}}
             >
-              Sales Quantity
+              Performance Prediction
             </Typography>
             <Box height="250px" mt="-20px">
               <BarChart isDashboard={true} />

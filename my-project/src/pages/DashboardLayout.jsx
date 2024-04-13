@@ -6,7 +6,7 @@ import Dashboard from './Dashboard';
 
 const DashboardLayout = () => {
   return (
-    <div>
+    <div style={{marginLeft: '-40%'}}>
         <Dashboard/>
     </div>
   )

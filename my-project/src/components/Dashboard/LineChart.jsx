@@ -61,7 +61,7 @@ const LineChart = ({ isCustomLineColors = false, isDashboard = false }) => {
         orient: "bottom",
         tickSize: 0,
         tickPadding: 5,
-        tickRotation: 0,
+        tickRotation: -45,
         legend: isDashboard ? undefined : "transportation", // added
         legendOffset: 36,
         legendPosition: "middle",
@@ -91,7 +91,7 @@ const LineChart = ({ isCustomLineColors = false, isDashboard = false }) => {
           justify: false,
           translateX: 100,
           translateY: 0,
-          itemsSpacing: 0,
+          itemsSpacing: 10,
           itemDirection: "left-to-right",
           itemWidth: 80,
           itemHeight: 20,
