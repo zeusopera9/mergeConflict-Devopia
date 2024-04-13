@@ -7,15 +7,18 @@ const ProgressCircle = ({ progress = "0.75", size = "40" }) => {
   const colors = tokens(theme.palette.mode);
   const angle = progress * 360;
   return (
-    <Box
-      sx={{
-        background: `radial-gradient(${colors.primary[400]} 55%, transparent 56%),
-            conic-gradient(transparent 0deg ${angle}deg, ${colors.blueAccent[500]} ${angle}deg 360deg),
-            ${colors.greenAccent[500]}`,
-        borderRadius: "50%",
-        width: `${size}px`,
-        height: `${size}px`,
-      }}
+    <PieChart
+      series={[
+        {
+          data: [
+            { id: 0, value: 10, label: 'series A' },
+            { id: 1, value: 15, label: 'series B' },
+            { id: 2, value: 20, label: 'series C' },
+          ],
+        },
+      ]}
+      width={400}
+      height={200}
     />
   );
 };
