@@ -1,15 +1,18 @@
-import Header from "../components/Landing/Header"
-import Welcome from "../components/Landing/Welcome"
+import React from 'react';
+import Body from '../components/Landing/Body';
+import OnlineLearningIcon from '../components/Landing/Image';
 
 const LandingPage = () => {
   return (
-    <>
+    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
       <div>
-        This is the Landing Page
-        <Welcome />
+        <Body />
       </div>
-    </>
-  )
-}
+      <div>
+        <OnlineLearningIcon />
+      </div>
+    </div>
+  );
+};
 
-export default LandingPage
+export default LandingPage;
