@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { Box, Button, IconButton, Typography, useTheme } from "@mui/material";
 import { tokens } from "../assets/theme";
 import { mockTransactions } from "../assets/mockData";
@@ -283,14 +282,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-=======
-import React from 'react'
-
-const Dashboard = () => {
-  return (
-    <div>Dashboard</div>
-  )
-}
-
-export default Dashboard
->>>>>>> fb725874ea68e1d7713ac533d6ccb5f9d062f410
