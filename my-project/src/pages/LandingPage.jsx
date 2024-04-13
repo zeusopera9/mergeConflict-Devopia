@@ -4,7 +4,7 @@ import OnlineLearningIcon from '../components/Landing/Image';
 
 const LandingPage = () => {
   return (
-    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '10%'  }}>
       <div>
         <Body />
       </div>
