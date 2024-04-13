@@ -25,7 +25,7 @@ const Footer = () => {
             </ul>
           </div>
           <hr className="my-4 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-4" />
-          <span className="block text-sm text-gray-500 sm:text-center dark:text-gray-400">Developed in Devopia</span>
+          <span className="block text-sm text-gray-500 sm:text-center dark:text-gray-400">Developed at Devopia</span>
         </div>
       </div>
     </footer>
