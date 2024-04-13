@@ -2,9 +2,9 @@ import React from 'react'
 
 const Body = () => {
   return (
-    <div>
+    <div style={{ color: "white"}}>
       <h1>
-        Learn Karo ! <br />
+        Learn Karo ! <br/>
       </h1>
         A one stop solution for all your academic needs
     </div>
