@@ -15,7 +15,6 @@ const Auth = () => {
       <button onClick={switchAuthModeHandler}>
         {isLogin ? 'Register' : 'Login'}
       </button>
-
     </div>
   );
 }
