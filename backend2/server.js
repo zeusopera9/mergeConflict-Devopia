@@ -41,6 +41,7 @@ const quizResponseSchema = new mongoose.Schema({
   }
 });
 
+const Quiz = mongoose.model("Quiz", quizResponseSchema);
 const User = mongoose.model("User", userSchema);
 
 const resultSchema = new mongoose.Schema({
@@ -147,15 +148,23 @@ app.post("/register", async (req, res) => {
 app.post("/saveQuizResponses", async (req, res) => {
   const { userEmail, responses } = req.body;
   try {
-    const user = await users.findOne({ email: userEmail });
-    const quiz = new Quiz({ user: user._id, responses: responses });
-    await quiz.save();
+    // Find the user by email in the 'users' collection
+    const user = await User.findOne({ email: userEmail });
+    if (!user) {
+      return res.status(404).json({ status: "error", message: "User not found" });
+    }
+
+    // Create a new quiz response document using the 'quizResponseSchema'
+    const quizResponse = new Quiz({ userEmail: userEmail, responses: responses });
+    await quizResponse.save();
+
     res.json({ status: "success" });
   } catch (error) {
     console.error("Error saving quiz responses:", error);
     res.status(500).json({ status: "error", error: error.message });
   }
 });
+
 
 app.get("/check-login", (req, res) => {
   if (req.session.email) {
