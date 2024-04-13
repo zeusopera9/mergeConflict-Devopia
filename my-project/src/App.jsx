@@ -6,6 +6,7 @@ import Register from './components/Auth/Register';
 import TeacherRegister from './components/Auth/teacherRegister';
 import Header from './components/Global/Header';
 import Footer from './components/Global/Footer';
+import Dashboard from './pages/Dashboard';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/auth" element={<Auth />} />
           <Route path='/register' element={<Register/>}/>
           <Route path='/teacher' element={<TeacherRegister/>}/>
+          <Route path='/dashboard' element={<Dashboard />} />
         </Routes>
       </BrowserRouter>
       <Footer />
