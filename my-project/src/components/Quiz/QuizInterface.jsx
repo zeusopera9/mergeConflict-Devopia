@@ -8,7 +8,7 @@ const QuizInterface = () => {
   const [score, setScore] = useState(0);
   const [quizCompleted, setQuizCompleted] = useState(false);
   const [userResponses, setUserResponses] = useState([]);
-  const [userEmail, setUserEmail] = useState(''); // Assuming you have the user's email stored somewhere
+  const [userEmail, setUserEmail] = useState(localStorage.getItem("email")); // Assuming you have the user's email stored somewhere
 
   useEffect(() => {
     const fetchQuizQuestions = async () => {
@@ -53,23 +53,14 @@ const QuizInterface = () => {
 
   const handleQuizCompletion = async () => {
     try {
-      const response = await axios.post('http://localhost:7000/saveQuizResponses', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          userEmail: userEmail,
-          responses: userResponses
-        })
-      });
-      // Handle response if needed
+      const response = await axios.post('http://localhost:7000/saveQuizResponses', {userEmail, userResponses});
+      console.log(response);
     } catch (error) {
       console.error('Error saving quiz responses:', error);
     }
   };
 
-  console.log(userResponses);
+  // console.log(userResponses);
 
   if (quizCompleted) {
     handleQuizCompletion(); // Call handleQuizCompletion when quiz is completed
