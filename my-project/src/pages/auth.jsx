@@ -1,9 +1,21 @@
 import React from 'react';
+import Register from '../components/Auth/Register';
+import Login from '../components/Auth/Login';
+import { useState } from 'react';
 
-const Auth = () => { // Correct the component name to Auth
+const Auth = () => { 
+  const [isLogin, setIsLogin] = useState(true);
+  const switchAuthModeHandler = () => {
+    setIsLogin((prevState) => !prevState);
+  };
+
   return (
     <div>
-      <h1>login and register components</h1>
+      {isLogin ? <Login /> : <Register />}
+      <button onClick={switchAuthModeHandler}>
+        {isLogin ? 'Register' : 'Login'}
+      </button>
+
     </div>
   );
 }
