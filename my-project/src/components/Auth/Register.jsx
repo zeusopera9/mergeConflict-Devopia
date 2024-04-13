@@ -14,19 +14,15 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/register', { fname, lname, email, username, password })
-      .then((response) => {
-        console.log(response);
-      });
+      const response = await axios.post('http://localhost:7000/register', { fname, lname, email, username, password });
+      console.log(response);
       if (response.data.status === 'success') {
+        window.location.href = '/auth';
         console.log('Registered successfully!');
-        // Redirect to login page upon successful registration
-        // Replace '/auth' with the actual path
-        window.location.href = '/';
       }
     } catch (error) {
-      console.error('Registration failed:', error.response.data.message);
-      setError(error.response.data.message);
+      console.error('Registration failed:');
+      console.log(error);
     }
   }
 

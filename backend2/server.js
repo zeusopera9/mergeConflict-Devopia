@@ -10,18 +10,16 @@ app.use(cors());
 
 connectDB();
 
-const User = mongoose.model(
-  "User",
-  new mongoose.Schema({
-    fname: String,
-    lname: String,
-    email: String,
-    username: String,
-    password: String,
-  })
-);
+const userSchema = new mongoose.Schema({
+  fname: String,
+  lname: String,
+  email: { type: String, unique: true }, // Ensure uniqueness of email field
+  username: String,
+  password: String,
+});
 
-// Middleware
+const User = mongoose.model("User", userSchema);
+
 app.use(express.json());
 app.use(
   session({
@@ -31,7 +29,6 @@ app.use(
   })
 );
 
-// Routes
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
@@ -61,7 +58,16 @@ app.post("/login", async (req, res) => {
 app.post("/register", async (req, res) => {
   const { fname, lname, email, username, password } = req.body;
   try {
+    // Check if the email already exists in the database
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ status: "error", message: "Email already exists" });
+    }
+
+    // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Create a new user instance
     const newUser = new User({
       fname,
       lname,
@@ -69,14 +75,17 @@ app.post("/register", async (req, res) => {
       username,
       password: hashedPassword,
     });
+
+    // Save the user to the database
     await newUser.save();
+
     res.json({ status: "success", user: newUser });
   } catch (error) {
-    console.error("Registration failed:", error.message);
+    console.error("Registration failed:", error);
     res.status(400).json({ status: "error", error: error.message });
   }
 });
 
-app.listen(5000, () => {
-  console.log("Server is running on port 5000");
+app.listen(7000, () => {
+  console.log("Server is running on port 7000");
 });

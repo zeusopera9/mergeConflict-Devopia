@@ -9,11 +9,11 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/login', { email, password });
+      const response = await axios.post('http://localhost:7000/login', { email, password });
       console.log(response);
       if (response.data.status === 'success') {
         console.log('Logged in successfully!');
-        window.location.href = '/dashboard';
+        window.location.href = '/';
       } else {
         setError(response.data.message);
       }
