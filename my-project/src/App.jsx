@@ -1,9 +1,9 @@
 import './App.css'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LandingPage from './pages/LandingPage';
-import Auth from './pages/Auth'; 
+import Auth from './pages/auth'; 
 import Register from './components/Auth/Register';
-import TeacherRegister from './components/Auth/TeacherRegister';
+import TeacherRegister from './components/Auth/teacherRegister';
 import Header from './components/Global/Header';
 import Footer from './components/Global/Footer';
 
