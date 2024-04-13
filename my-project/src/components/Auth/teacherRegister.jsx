@@ -100,7 +100,6 @@ const TeacherRegister = () => {
                 >
                   Sign Up
                 </button>
-                <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                 <a
                   href="/auth"
                   className="font-medium text-primary-600 hover:underline dark:text-primary-500"
@@ -114,7 +113,6 @@ const TeacherRegister = () => {
                 >
                   Register as a Student
                 </a>
-              </p>
               </form>
             </div>
           </div>

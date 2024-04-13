@@ -18,6 +18,30 @@ const userSchema = new mongoose.Schema({
   password: String,
 });
 
+const quizResponseSchema = new mongoose.Schema({
+  responses: [
+    {
+      question: {
+        type: String,
+        required: true
+      },
+      answer: {
+        type: String,
+        required: true
+      },
+      correct: {
+        type: Boolean,
+        required: true
+      }
+    }
+  ],
+  userEmail: {
+    type: String,
+    required: true
+  }
+});
+
+const Quiz = mongoose.model("Quiz", quizResponseSchema);
 const User = mongoose.model("User", userSchema);
 
 const resultSchema = new mongoose.Schema({
@@ -97,16 +121,13 @@ app.post("/login", async (req, res) => {
 app.post("/register", async (req, res) => {
   const { fname, lname, email, username, password } = req.body;
   try {
-    // Check if the email already exists in the database
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({ status: "error", message: "Email already exists" });
     }
 
-    // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Create a new user instance
     const newUser = new User({
       fname,
       lname,
@@ -115,7 +136,6 @@ app.post("/register", async (req, res) => {
       password: hashedPassword,
     });
 
-    // Save the user to the database
     await newUser.save();
 
     res.json({ status: "success", user: newUser });
@@ -126,9 +146,34 @@ app.post("/register", async (req, res) => {
   }
 });
 
+// Endpoint to save quiz responses
+app.post("/saveQuizResponses", async (req, res) => {
+  // Check if the user is logged in
+  if (!req.session.email) {
+    return res.status(401).json({ status: "error", message: "User not logged in" });
+  }
+
+  // Get the email of the currently logged-in user from the session
+  const userEmail = req.session.email;
+
+  const { responses } = req.body;
+  try {
+    // Create a new quiz response document using the 'quizResponseSchema'
+    const quizResponse = new Quiz({ userEmail: userEmail, responses: responses });
+    await quizResponse.save();
+
+    res.json({ status: "success" });
+  } catch (error) {
+    console.error("Error saving quiz responses:", error);
+    res.status(500).json({ status: "error", error: error.message });
+  }
+});
+
+
 app.get("/check-login", (req, res) => {
-  if (req.session.email) {
-    res.json({ loggedIn: true, email: req.session.email });
+  console.log(req);
+  if (req.session.user.email) {
+    res.json({ loggedIn: true, email: req.session.user.email });
   } else {
     res.json({ loggedIn: false });
   }
@@ -222,3 +267,6 @@ app.get('/marks', async (req, res) => {
 app.listen(7000, () => {
   console.log("Server is running on port 7000");
 });
+
+
+
