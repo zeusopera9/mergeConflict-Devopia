@@ -55,7 +55,10 @@ const Profile = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:7000/uploadResults', formData);
+      const response = await axios.post('http://localhost:7000/uploadResults', {
+        ...formData,
+        email: sessionStorage.getItem('email'),
+      });
       console.log('Data saved:', response.data);
     } catch (error) {
       console.error('Error saving data:', error);
