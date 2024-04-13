@@ -2,14 +2,35 @@ import { ResponsiveLine } from "@nivo/line";
 import { useTheme } from "@mui/material";
 import { tokens } from "../../assets/theme";
 import { mockLineData as data } from "../../assets/mockData";
+import React, { useState, useEffect } from "react";
+
 
 const LineChart = ({ isCustomLineColors = false, isDashboard = false }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const [chartData, setChartData] = useState(null);
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await fetch("http://localhost:7000/marks");
+  //       const data = await response.json();
+  //       setChartData(data);
+  //     } catch (error) {
+  //       console.error("Error fetching data:", error);
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, []); 
+
+  if (!chartData) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <ResponsiveLine
-      data={data}
+      data={chartData}
       theme={{
         axis: {
           domain: {
