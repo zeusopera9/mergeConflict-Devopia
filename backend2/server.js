@@ -13,7 +13,7 @@ connectDB();
 const userSchema = new mongoose.Schema({
   fname: String,
   lname: String,
-  email: { type: String, unique: true }, // Ensure uniqueness of email field
+  email: { type: String, unique: true },
   username: String,
   password: String,
 });
@@ -84,6 +84,14 @@ app.post("/register", async (req, res) => {
     console.error("Registration failed:", error);
     alert("Email already in use");
     res.status(400).json({ status: "error", error: error.message });
+  }
+});
+
+app.get("/check-login", (req, res) => {
+  if (req.session.email) {
+    res.json({ loggedIn: true, email: req.session.email });
+  } else {
+    res.json({ loggedIn: false });
   }
 });
 
