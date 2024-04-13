@@ -95,6 +95,19 @@ const Register = () => {
                 Register
               </button>
               {error && <p className="text-red-500">{error}</p>}
+              <a
+                  href="/auth"
+                  className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                >
+                  Login 
+                </a>
+                {" "}Or{" "}
+                <a
+                  href="/teacher"
+                  className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                >
+                  Register as a Teacher
+                </a>
             </form>
           </div>
         </div>

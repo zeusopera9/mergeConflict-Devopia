@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const QuizInterface = () => {
   const [questions, setQuestions] = useState([]);
@@ -52,7 +53,7 @@ const QuizInterface = () => {
 
   const handleQuizCompletion = async () => {
     try {
-      const response = await fetch('http://localhost:7000/saveQuizResponses', {
+      const response = await axios.post('http://localhost:7000/saveQuizResponses', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

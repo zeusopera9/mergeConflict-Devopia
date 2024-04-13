@@ -146,14 +146,16 @@ app.post("/register", async (req, res) => {
 
 // Endpoint to save quiz responses
 app.post("/saveQuizResponses", async (req, res) => {
-  const { userEmail, responses } = req.body;
-  try {
-    // Find the user by email in the 'users' collection
-    const user = await User.findOne({ email: userEmail });
-    if (!user) {
-      return res.status(404).json({ status: "error", message: "User not found" });
-    }
+  // Check if the user is logged in
+  if (!req.session.email) {
+    return res.status(401).json({ status: "error", message: "User not logged in" });
+  }
 
+  // Get the email of the currently logged-in user from the session
+  const userEmail = req.session.email;
+
+  const { responses } = req.body;
+  try {
     // Create a new quiz response document using the 'quizResponseSchema'
     const quizResponse = new Quiz({ userEmail: userEmail, responses: responses });
     await quizResponse.save();
