@@ -8,8 +8,8 @@ const AiContainer = () => {
   const [generatingAnswer, setGeneratingAnswer] = useState(false);
 
   async function generateAnswer(e) {
-    setGeneratingAnswer(true);
     e.preventDefault();
+    setGeneratingAnswer(true);
     setAnswer("Loading your answer... \n It might take up to 10 seconds");
     try {
       const response = await axios({
@@ -31,36 +31,33 @@ const AiContainer = () => {
   }
 
   return (
-    <>
-      <div className="bg-white h-screen p-3">
-        <form
-          onSubmit={generateAnswer}
-          className="w-full md:w-2/3 m-auto text-center rounded bg-gray-50 py-2"
+    <div className="h-screen flex flex-col" style={{marginTop: '60px'}}>
+      <form
+        onSubmit={generateAnswer}
+        className="mt-6 flex flex-col items-center"
+      >
+        <input
+          required
+          className="border rounded w-full max-w-md my-2 min-h-fit px-4 py-2"
+          value={question}
+          onChange={(e) => setQuestion(e.target.value)}
+          placeholder="Ask anything"
+        ></input>
+        <button
+          type="submit"
+          className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors duration-300"
+          disabled={generatingAnswer}
+          style={{marginBottom: '10px'}}
         >
-          <a href="#" target="_blank">
-            <h1 className="text-3xl text-center">Chat AI</h1>
-            <p className="text-xs">Using Google Gemini API</p>
-          </a>
-          <textarea
-            required
-            className="border rounded w-11/12 my-2 min-h-fit p-3"
-            value={question}
-            onChange={(e) => setQuestion(e.target.value)}
-            placeholder="Ask anything"
-          ></textarea>
-          <button
-            type="submit"
-            className="bg-blue-300 p-3 rounded-md hover:bg-blue-400 transition-all duration-300"
-            disabled={generatingAnswer}
-          >
-            Generate answer
-          </button>
-        </form>
-        <div className="w-full md:w-2/3 m-auto text-center rounded bg-gray-50 my-1">
-          <ReactMarkdown className="p-3">{answer}</ReactMarkdown>
+          {generatingAnswer ? 'Generating...' : 'Generate answer'}
+        </button>
+      </form>
+      <div className="max-w-md w-full bg-gray-100 dark:bg-gray-800 rounded-lg shadow-lg p-6" style={{ maxHeight: '400px', overflowY: 'auto' }}>
+        <div style={{ maxHeight: '90%', overflowY: 'auto', padding: '10px' }}>
+          <ReactMarkdown>{answer}</ReactMarkdown>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

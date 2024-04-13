@@ -12,7 +12,6 @@ const Chat = () => {
   return (
     <>
       {/* Header */}
-      <h1 className="text-2xl font-bold py-5">Chat Application</h1>
 
       {/* Toggle between Teacher and AI Assistant */}
       <div className="toggle-container">
