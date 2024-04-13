@@ -270,14 +270,17 @@ export const mockTransactions = [
   {
     txId: "1",
     subject: "Science",
+    category: 19,
   },
   {
     txId: "2",
     subject: "History",
+    category: 23,
   },
   {
     txId: "3",
     subject: "Geography",
+    category: 24,
   },
 ];
 

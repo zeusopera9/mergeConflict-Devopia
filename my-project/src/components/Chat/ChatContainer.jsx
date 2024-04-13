@@ -29,7 +29,7 @@ const ChatContainer = () => {
 
     const onClick = () => {
         if(message.trim() !== "") { // Trim the message to remove whitespace
-            socket.emit("message", { message, type: userData });
+            socket.emit("message", { message, type: localStorage.getItem("email") });
             setMessage("");
         } else {
             alert("Please add a message");
@@ -44,7 +44,7 @@ const ChatContainer = () => {
             <div className="chat-messages">
                 {/* Display chat messages here */}
                 {messages.map((msg, index) => (
-                    <div key={index} className={`message ${msg.type}`} style={{ color: msg.type == "zaid" ? "green" : "red" }}>
+                    <div key={index} className={`message ${msg.type}`} style={{ color: msg.type == localStorage.getItem("email") ? "green" : "red" }}>
                         <p>{msg.message}</p>
                     </div>
                 ))}
