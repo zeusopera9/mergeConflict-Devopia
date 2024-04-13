@@ -4,7 +4,7 @@ import Welcome from "../components/Landing/Welcome"
 const LandingPage = () => {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <div>
         This is the Landing Page
         <Welcome />
