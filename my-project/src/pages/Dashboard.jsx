@@ -13,6 +13,7 @@ import LineChart from "../components/Dashboard/LineChart";
 import PerformanceChart from "../components/Dashboard/BarChart";
 import ProgressCircle from "../components/Dashboard/ProgressCircle";
 import Sidebar from "../components/Dashboard/global/Sidebar";
+import React, { useState, useEffect } from "react";
 
 const Dashboard = () => {
   const theme = useTheme();
@@ -96,7 +97,7 @@ const Dashboard = () => {
                     variant="h5"
                     fontWeight="600"
                   >
-                    {`Test ${transaction.txId}`}
+                    {transaction.subject}
                   </Typography>
                 </Box>
                 <button

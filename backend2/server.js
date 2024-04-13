@@ -87,6 +87,7 @@ app.use(
     secret: "secret",
     resave: false,
     saveUninitialized: false,
+    cookie: { secure: false }
   })
 );
 
@@ -99,9 +100,10 @@ app.post("/login", async (req, res) => {
   try {
     const user = await User.findOne({ email });
     if (user) {
-      const match = await bcrypt.compare(password, user.password);
+      const match = bcrypt.compare(password, user.password);
       if (match) {
         req.session.email = email;
+        req.session.save();
         res.json({ status: "success", user });
         console.log("Logged in successfully!");
       } else {
@@ -196,7 +198,69 @@ app.post("/uploadResults", async (req, res) => {
   }
 });
 
+app.get('/marks', async (req, res) => {
+  try {
+    const results = await Result.find();
+    console.log(results);
+    const formattedData = results.map(result => {
+      const calculateAverage = (marksString) => {
+        const marksArray = marksString.split(',').map(Number);
+        const sum = marksArray.reduce((acc, val) => acc + val, 0);
+        return sum / marksArray.length;
+      };
 
+      // Define red, black, and blue colors
+      const colors = {
+        red: '#FF0000',
+        black: '#000000',
+        blue: '#0000FF',
+      };
+
+      return [
+        {
+          id: 'Year 1',
+          color: colors.red, // Red color
+          data: [
+            { x: 'English', y: calculateAverage(results.english.year1) },
+            { x: 'Hindi', y: calculateAverage(results.hindi.year1) },
+            { x: 'History', y: calculateAverage(results.history.year1) },
+            { x: 'Geography', y: calculateAverage(results.geography.year1) },
+            { x: 'Science', y: calculateAverage(results.science.year1) },
+            { x: 'Maths', y: calculateAverage(results.maths.year1) },
+          ],
+        },
+        {
+          id: 'Year 2',
+          color: colors.black, // Black color
+          data: [
+            { x: 'English', y: calculateAverage(results.english.year2) },
+            { x: 'Hindi', y: calculateAverage(results.hindi.year2) },
+            { x: 'History', y: calculateAverage(results.history.year2) },
+            { x: 'Geography', y: calculateAverage(results.geography.year2) },
+            { x: 'Science', y: calculateAverage(results.science.year2) },
+            { x: 'Maths', y: calculateAverage(results.maths.year2) },
+          ],
+        },
+        {
+          id: 'Year 3',
+          color: colors.blue, // Blue color
+          data: [
+            { x: 'English', y: calculateAverage(results.english.year3) },
+            { x: 'Hindi', y: calculateAverage(results.hindi.year3) },
+            { x: 'History', y: calculateAverage(results.history.year3) },
+            { x: 'Geography', y: calculateAverage(results.geography.year3) },
+            { x: 'Science', y: calculateAverage(results.science.year3) },
+            { x: 'Maths', y: calculateAverage(results.maths.year3) },
+          ],
+        },
+      ];
+    });
+    res.json(formattedData);
+  } catch (error) {
+    console.error('Error fetching marks data:', error);
+    res.status(500).json({ error: 'Error fetching marks data' });
+  }
+});
 
 
 app.listen(7000, () => {
