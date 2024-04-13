@@ -7,6 +7,7 @@ import TeacherRegister from './components/Auth/teacherRegister';
 import Header from './components/Global/Header';
 import Footer from './components/Global/Footer';
 import Dashboard from './pages/Dashboard';
+import Chat from './pages/Chat';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path='/register' element={<Register/>}/>
           <Route path='/teacher' element={<TeacherRegister/>}/>
           <Route path='/dashboard' element={<Dashboard />} />
+          <Route path='/chat' element={<Chat />} />
         </Routes>
       </BrowserRouter>
       <Footer />
