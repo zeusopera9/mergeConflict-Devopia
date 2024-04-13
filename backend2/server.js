@@ -169,8 +169,9 @@ app.post("/saveQuizResponses", async (req, res) => {
 
 
 app.get("/check-login", (req, res) => {
-  if (req.session.email) {
-    res.json({ loggedIn: true, email: req.session.email });
+  console.log(req);
+  if (req.session.user.email) {
+    res.json({ loggedIn: true, email: req.session.user.email });
   } else {
     res.json({ loggedIn: false });
   }

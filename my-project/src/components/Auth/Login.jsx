@@ -13,6 +13,7 @@ const Login = () => {
       console.log(response);
       if (response.data.status === 'success') {
         console.log('Logged in successfully!');
+        localStorage.setItem('email', response.data.user.email);
         window.location.href = '/';
       } else {
         setError(response.data.message);
