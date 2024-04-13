@@ -10,7 +10,7 @@ import { tokens } from "../assets/theme";
 import { mockTransactions } from "../assets/mockData";
 import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
 import LineChart from "../components/Dashboard/LineChart";
-import BarChart from "../components/Dashboard/BarChart";
+import PerformanceChart from "../components/Dashboard/BarChart";
 import ProgressCircle from "../components/Dashboard/ProgressCircle";
 import Sidebar from "../components/Dashboard/global/Sidebar";
 
@@ -19,8 +19,8 @@ const Dashboard = () => {
   const colors = tokens(theme.palette.mode);
 
   return (
-    <Container className="w-screen flex flex-row flex-nowrap" style={{marginTop:'5%', flex: 1,  alignContent: 'start', justifyContent: 'start' }}>
-      <Sidebar />
+    <Container className="w-screen flex flex-row flex-nowrap" style={{ flex: 1,  alignContent: 'start', justifyContent: 'start' }}>
+      {/* <Sidebar /> */}
       <div className="flex-[0.7] ml-32">
         <Box
           display="grid"
@@ -33,7 +33,6 @@ const Dashboard = () => {
             gridRow="span 2"
             backgroundColor={colors.primary[400]}
             style={{ paddingBottom: "40px", borderRadius: '20px' }}
-
           >
             <Box
               mt="25px"
@@ -48,22 +47,8 @@ const Dashboard = () => {
                   fontWeight="600"
                   color={colors.grey[100]}
                 >
-                  Revenue Generated
+                  Perfomance Over Years
                 </Typography>
-                <Typography
-                  variant="h3"
-                  fontWeight="bold"
-                  color={colors.greenAccent[500]}
-                >
-                  $59,342.32
-                </Typography>
-              </Box>
-              <Box>
-                <IconButton>
-                  <DownloadOutlinedIcon
-                    sx={{ fontSize: "26px", color: colors.greenAccent[500] }}
-                  />
-                </IconButton>
               </Box>
             </Box>
             <Box height="250px" m="-35px 0 0 0">
@@ -76,6 +61,7 @@ const Dashboard = () => {
             gridRow="span 2"
             backgroundColor={colors.primary[400]}
             overflow="auto"
+            style={{borderRadius: '20px',}}
           >
             <Box
               display="flex"
@@ -83,14 +69,15 @@ const Dashboard = () => {
               alignItems="center"
               borderBottom={`4px solid ${colors.primary[500]}`}
               colors={colors.grey[100]}
-              p="20px"
+              p="4.3%"
+              style={{height: '22.2%'}}
             >
               <Typography
                 color={colors.grey[100]}
                 variant="h5"
                 fontWeight="600"
               >
-                Recent Transactions
+                Test
               </Typography>
             </Box>
             {mockTransactions.map((transaction, i) => (
@@ -109,20 +96,16 @@ const Dashboard = () => {
                     variant="h5"
                     fontWeight="600"
                   >
-                    {transaction.txId}
-                  </Typography>
-                  <Typography color={colors.grey[100]}>
-                    {transaction.user}
+                    {`Test ${transaction.txId}`}
                   </Typography>
                 </Box>
-                <Box color={colors.grey[100]}>{transaction.date}</Box>
-                <Box
+                <button
                   backgroundColor={colors.greenAccent[500]}
                   p="5px 10px"
                   borderRadius="4px"
                 >
-                  ${transaction.cost}
-                </Box>
+                  Attempt
+                </button>
               </Box>
             ))}
           </Box>
@@ -135,7 +118,7 @@ const Dashboard = () => {
             style={{borderRadius: '20px'}}
           >
             <Typography variant="h5" fontWeight="600" style={{color: 'black'}}>
-              Campaign
+              Current Year Marks Distribution
             </Typography>
             <Box
               display="flex"
@@ -144,16 +127,6 @@ const Dashboard = () => {
               mt="25px"
             >
               <ProgressCircle size="125" />
-              <Typography
-                variant="h5"
-                color={colors.greenAccent[500]}
-                sx={{ mt: "15px" }}
-              >
-                $48,352 revenue generated
-              </Typography>
-              <Typography style={{color: 'black'}}>
-                Includes extra misc expenditures and costs
-              </Typography>
             </Box>
           </Box>
           <Box
@@ -165,13 +138,13 @@ const Dashboard = () => {
             <Typography
               variant="h5"
               fontWeight="600"
-              sx={{ padding: "30px 30px 0 30px" }}
+              sx={{ padding: "20px 30px 10px 30px" }}
               style={{color: 'black'}}
             >
-              Sales Quantity
+              Performance Prediction
             </Typography>
-            <Box height="250px" mt="-20px">
-              <BarChart isDashboard={true} />
+            <Box height="250px" mt="-10%">
+              <PerformanceChart/>
             </Box>
           </Box>
         </Box>
