@@ -1,7 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import study from "../../assets/study.webp";
+import axios from 'axios';
 
 const TeacherRegister = () => {
+  const [fname, setFname] = useState('');
+  const [lname, setLname] = useState('');
+  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [code, setCode] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:7000/registerTeacher', { fname, lname, email, username, password, code});
+      console.log(response);
+      if (response.data.status === 'success') {
+        window.location.href = '/auth';
+        console.log('Registered successfully!');
+      }
+    } catch (error) {
+      console.error('Registration failed:');
+      console.log(error);
+    }
+  }
+
   return (
     <div style={{ marginTop: "-5%" }}>
       <section className="grid grid-cols-2">
@@ -14,7 +37,7 @@ const TeacherRegister = () => {
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                 Register as Teacher
               </h1>
-              <form className="space-y-4 md:space-y-6" action="#">
+              <form className="space-y-4 md:space-y-6" action="#" onSubmit={handleSubmit}>
                 <div className="grid grid-cols-2 gap-6">
                   <div>
                     <input
@@ -24,6 +47,8 @@ const TeacherRegister = () => {
                       className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       required
                       placeholder="First Name"
+                      value={fname}
+                      onChange={(e) => setFname(e.target.value)}
                     />
                   </div>
                   <div>
@@ -34,6 +59,8 @@ const TeacherRegister = () => {
                       className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       required
                       placeholder="Last Name"
+                      value={lname}
+                      onChange={(e) => setLname(e.target.value)}
                     />
                   </div>
                 </div>
@@ -45,6 +72,8 @@ const TeacherRegister = () => {
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required
                     placeholder="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
                 <div>
@@ -55,6 +84,8 @@ const TeacherRegister = () => {
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required
                     placeholder="Username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
                   />
                 </div>
                 <div>
@@ -65,6 +96,8 @@ const TeacherRegister = () => {
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required
                     placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
                 <div className="grid grid-cols-2 gap-6">
@@ -90,6 +123,8 @@ const TeacherRegister = () => {
                       id="code"
                       className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       required
+                      value={code}
+                      onChange={(e) => setCode(e.target.value)}
                     />
                   </div>
                 </div>
