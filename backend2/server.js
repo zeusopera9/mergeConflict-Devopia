@@ -20,6 +20,43 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model("User", userSchema);
 
+const resultSchema = new mongoose.Schema({
+  email: String,
+  english: {
+    year1: String,
+    year2: String,
+    year3: String,
+  },
+  hindi: {
+    year1: String,
+    year2: String,
+    year3: String,
+  },
+  history: {
+    year1: String,
+    year2: String,
+    year3: String,
+  },
+  geography: {
+    year1: String,
+    year2: String,
+    year3: String,
+  },
+  science: {
+    year1: String,
+    year2: String,
+    year3: String,
+  },
+  maths: {
+    year1: String,
+    year2: String,
+    year3: String,
+  },
+});
+
+const Result = mongoose.model('Results', resultSchema);
+
+
 app.use(express.json());
 app.use(
   session({
@@ -94,6 +131,29 @@ app.get("/check-login", (req, res) => {
     res.json({ loggedIn: false });
   }
 });
+
+app.post("/uploadResults", async (req, res) => {
+  const { email, english, hindi, history, geography, science, maths } = req.body;
+  try {
+    const result = new Result({
+      email,
+      english,
+      hindi,
+      history,
+      geography,
+      science,
+      maths,
+    });
+    await result.save();
+    res.json({ status: "success", result });
+  } catch (error) {
+    console.error("Error uploading results:", error);
+    res.status(500).json({ status: "error", error: error.message });
+  }
+});
+
+
+
 
 app.listen(7000, () => {
   console.log("Server is running on port 7000");
