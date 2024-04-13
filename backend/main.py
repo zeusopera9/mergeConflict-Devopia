@@ -8,6 +8,9 @@ app = Flask(__name__)
 app.config["MONGO_URI"] = mongoConnectionString
 mongo = PyMongo(app)
 
+# building mongo collection: teachers
+mongo.db.teachers.insert_one({'name': 'Jane Doe'})
+
 @app.route('/')
 def hello():
     try:
