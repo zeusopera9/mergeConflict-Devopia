@@ -9,6 +9,7 @@ import DashboardLayout from './pages/DashboardLayout';
 import Header from './components/Global/Header';
 import Footer from './components/Global/Footer';
 import Chat from './pages/Chat';
+import Quiz from './pages/Quiz';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/layout" element={<DashboardLayout />} />
         <Route path="/profile" element={<Profile />} />
         <Route path='/chat' element={<Chat />} />
+        <Route path='/quiz' element={<Quiz />} />
       </Routes>
       {window.location.pathname !== '/layout' && (
         <>

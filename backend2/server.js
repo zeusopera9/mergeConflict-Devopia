@@ -18,6 +18,29 @@ const userSchema = new mongoose.Schema({
   password: String,
 });
 
+const quizResponseSchema = new mongoose.Schema({
+  responses: [
+    {
+      question: {
+        type: String,
+        required: true
+      },
+      answer: {
+        type: String,
+        required: true
+      },
+      correct: {
+        type: Boolean,
+        required: true
+      }
+    }
+  ],
+  userEmail: {
+    type: String,
+    required: true
+  }
+});
+
 const User = mongoose.model("User", userSchema);
 
 app.use(express.json());
@@ -58,16 +81,13 @@ app.post("/login", async (req, res) => {
 app.post("/register", async (req, res) => {
   const { fname, lname, email, username, password } = req.body;
   try {
-    // Check if the email already exists in the database
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({ status: "error", message: "Email already exists" });
     }
 
-    // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Create a new user instance
     const newUser = new User({
       fname,
       lname,
@@ -76,7 +96,6 @@ app.post("/register", async (req, res) => {
       password: hashedPassword,
     });
 
-    // Save the user to the database
     await newUser.save();
 
     res.json({ status: "success", user: newUser });
@@ -84,6 +103,20 @@ app.post("/register", async (req, res) => {
     console.error("Registration failed:", error);
     alert("Email already in use");
     res.status(400).json({ status: "error", error: error.message });
+  }
+});
+
+// Endpoint to save quiz responses
+app.post("/saveQuizResponses", async (req, res) => {
+  const { userEmail, responses } = req.body;
+  try {
+    const user = await users.findOne({ email: userEmail });
+    const quiz = new Quiz({ user: user._id, responses: responses });
+    await quiz.save();
+    res.json({ status: "success" });
+  } catch (error) {
+    console.error("Error saving quiz responses:", error);
+    res.status(500).json({ status: "error", error: error.message });
   }
 });
 
