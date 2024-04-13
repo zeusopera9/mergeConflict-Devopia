@@ -10,7 +10,7 @@ import { tokens } from "../assets/theme";
 import { mockTransactions } from "../assets/mockData";
 import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
 import LineChart from "../components/Dashboard/LineChart";
-import BarChart from "../components/Dashboard/BarChart";
+import PerformanceChart from "../components/Dashboard/BarChart";
 import ProgressCircle from "../components/Dashboard/ProgressCircle";
 import Sidebar from "../components/Dashboard/global/Sidebar";
 
@@ -19,8 +19,8 @@ const Dashboard = () => {
   const colors = tokens(theme.palette.mode);
 
   return (
-    <Container className="w-screen flex flex-row flex-nowrap" style={{marginTop:'5%', flex: 1,  alignContent: 'start', justifyContent: 'start' }}>
-      <Sidebar />
+    <Container className="w-screen flex flex-row flex-nowrap" style={{ flex: 1,  alignContent: 'start', justifyContent: 'start' }}>
+      {/* <Sidebar /> */}
       <div className="flex-[0.7] ml-32">
         <Box
           display="grid"
@@ -118,7 +118,7 @@ const Dashboard = () => {
             style={{borderRadius: '20px'}}
           >
             <Typography variant="h5" fontWeight="600" style={{color: 'black'}}>
-              Campaign
+              Current Year Marks Distribution
             </Typography>
             <Box
               display="flex"
@@ -127,15 +127,6 @@ const Dashboard = () => {
               mt="25px"
             >
               <ProgressCircle size="125" />
-              <Typography
-                variant="h5"
-                color={colors.greenAccent[500]}
-                sx={{ mt: "15px" }}
-              >
-                $48,352 revenue generated
-              </Typography>
-              <Typography style={{color: 'black'}}>
-              </Typography>
             </Box>
           </Box>
           <Box
@@ -147,13 +138,13 @@ const Dashboard = () => {
             <Typography
               variant="h5"
               fontWeight="600"
-              sx={{ padding: "30px 30px 0 30px" }}
+              sx={{ padding: "20px 30px 10px 30px" }}
               style={{color: 'black'}}
             >
               Performance Prediction
             </Typography>
-            <Box height="250px" mt="-20px">
-              <BarChart isDashboard={true} />
+            <Box height="250px" mt="-10%">
+              <PerformanceChart/>
             </Box>
           </Box>
         </Box>

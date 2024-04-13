@@ -13,12 +13,7 @@ import Chat from './pages/Chat';
 function App() {
   return (
     <BrowserRouter>
-      {window.location.pathname !== '/layout' && (
-        <>
-          <Header />
-          <Footer />
-        </>
-      )}
+    <Header />
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/auth" element={<Auth />} />
@@ -28,6 +23,11 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path='/chat' element={<Chat />} />
       </Routes>
+      {window.location.pathname !== '/layout' && (
+        <>
+          <Footer />
+        </>
+      )}
     </BrowserRouter>
   );
 }
