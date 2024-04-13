@@ -6,9 +6,12 @@ let socket = io.connect(`${endPoint}`);
 
 const ChatContainer = () => {
     const [messages, setMessages] = useState([]);
-    const [message, setMessage] = useState(""); // Add message state
+    const [message, setMessage] = useState("");
+    const [userData, setUserData] = useState("");
 
     useEffect(() => {
+        const data = localStorage.getItem('user');
+        setUserData(data);
         // Add the event listener when the component mounts
         socket.on("message", msg => {
             setMessages(prevMessages => [...prevMessages, msg]);
@@ -26,7 +29,7 @@ const ChatContainer = () => {
 
     const onClick = () => {
         if(message.trim() !== "") { // Trim the message to remove whitespace
-            socket.emit("message", { message, type: "user" });
+            socket.emit("message", { message, type: userData });
             setMessage("");
         } else {
             alert("Please add a message");
@@ -41,7 +44,7 @@ const ChatContainer = () => {
             <div className="chat-messages">
                 {/* Display chat messages here */}
                 {messages.map((msg, index) => (
-                    <div key={index} className={`message ${msg.type}`} style={{ color: msg.type === "user" ? "green" : "red" }}>
+                    <div key={index} className={`message ${msg.type}`} style={{ color: msg.type == "zaid" ? "green" : "red" }}>
                         <p>{msg.message}</p>
                     </div>
                 ))}
