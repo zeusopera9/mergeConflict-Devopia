@@ -73,6 +73,7 @@ app.post("/register", async (req, res) => {
     res.json({ status: "success", user: newUser });
   } catch (error) {
     console.error("Registration failed:", error.message);
+    alert("Email already in use");
     res.status(400).json({ status: "error", error: error.message });
   }
 });

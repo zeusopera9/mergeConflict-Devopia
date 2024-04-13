@@ -69,10 +69,10 @@ const Login = () => {
                 </p>
             </form>
             </div>
-            </div>
-            </div>
+        </div>
+    </div>
             </section>
-            );
-            };
+    );
+};
 
 export default Login;
