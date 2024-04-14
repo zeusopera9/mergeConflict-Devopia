@@ -5,6 +5,9 @@ import connectDB from "./connectdb.js";
 import bcrypt from "bcrypt";
 import cors from "cors";
 
+import { spawn } from 'child_process';
+
+
 const app = express();
 app.use(cors());
 
@@ -334,6 +337,35 @@ app.get('/quizzes', async (req, res) => {
     console.error('Error fetching quiz data:', error);
     res.status(500).json({ error: 'Error fetching quiz data' });
   }
+});
+
+// Endpoint to run the Python script
+app.get('/runPythonScript', (req, res) => {
+  // Path to your Python script
+  const pythonScriptPath = 'C:/Users/zaida/Desktop/mergeConflict-Devopia/backend2/transp.py';
+
+  // Arguments to pass to the Python script (if any)
+  const args = [];
+
+  // Spawn a Python process with the script path and arguments
+  const pythonProcess = spawn('python', [pythonScriptPath, ...args]);
+
+  // Listen for stdout data from the Python process
+  pythonProcess.stdout.on('data', (data) => {
+    console.log(`Python stdout: ${data}`);
+  });
+
+  // Listen for stderr data from the Python process
+  pythonProcess.stderr.on('data', (data) => {
+    console.error(`Python stderr: ${data}`);
+  });
+
+  // Listen for the Python process to exit
+  pythonProcess.on('close', (code) => {
+    console.log(`Python process exited with code ${code}`);
+    // Send a response to the client indicating the completion of the Python script execution
+    res.json({ status: 'success', message: 'Python script executed successfully' });
+  });
 });
 
 app.listen(7000, () => {
