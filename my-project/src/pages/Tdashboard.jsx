@@ -20,20 +20,22 @@ const Tdashboard = () => {
 
 
     return (
-        <div style={{ display: 'flex' }}>
+        <div style={{ display: 'flex', margin: '7%' }}>
             <div style={{ marginRight: '20px' }}>
-                <h1>Teacher's Dashboard</h1>
+                <h1>Dashboard</h1>
                 <h2>Students</h2>
-                <ul style={{ listStyle: 'none', padding: 0 }}>
-                    {users.map(user => (
-                        <li key={user._id} style={{ marginBottom: '8px', backgroundColor: '#EADBC8', padding: '8px', borderRadius: '4px', color: 'black' }}>
-                            <strong>Email:</strong> {user.email} <br />
-                            <strong>First name:</strong> {user.fname} <br />
-                            <strong>Last name:</strong> {user.lname}
-                            <button className="bg-white ml-8">View Quiz Score</button>
-                        </li>
-                    ))}
-                </ul>
+                <div style={{ height: '400px', overflowY: 'scroll' }}>
+                    <ul style={{ listStyle: 'none', padding: 0 }}>
+                        {users.map(user => (
+                            <li key={user._id} style={{ marginBottom: '8px', backgroundColor: '#EADBC8', padding: '8px', borderRadius: '4px', color: 'black' }}>
+                                <strong>Email:</strong> {user.email} <br />
+                                <strong>First name:</strong> {user.fname} <br />
+                                <strong>Last name:</strong> {user.lname}
+                                <button className="bg-white ml-8">View Quiz Score</button>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
             </div>
             <div>
                 {/* <h2>Quiz</h2>

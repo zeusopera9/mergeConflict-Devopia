@@ -12,6 +12,7 @@ import Chat from './pages/Chat';
 import Quiz from './pages/Quiz';
 import Tdashboard from './pages/Tdashboard';
 import Feedback from './pages/Feedback';
+import LearningResource from './pages/LearningResource';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path='/quiz' element={<Quiz />} />
         <Route path='/tdashboard' element={<Tdashboard />} />
         <Route path='/feedback' element={<Feedback />} />
+        <Route path='/learning' element={<LearningResource />} />
       </Routes>
       {window.location.pathname !== '/layout' && (
         <>
