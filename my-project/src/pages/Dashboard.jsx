@@ -18,6 +18,20 @@ import React, { useState, useEffect } from "react";
 const Dashboard = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const [data,setData] = useState('');
+  useEffect(() => {
+      const fetchPython = async () => {  
+          try {
+              const response = await fetch('http://127.0.0.1:5000/get_similarity')
+              const data = await response.json();
+              setData(data);
+          } catch (error) {
+              console.error('Error fetching Python data:', error);
+          }
+      }   
+      fetchPython();
+  },[])
+  
 
   return (
     <Container className="w-screen flex flex-row flex-nowrap" style={{ flex: 1,  alignContent: 'start', justifyContent: 'start' }}>
@@ -147,7 +161,22 @@ const Dashboard = () => {
               <PerformanceChart/>
             </Box>
           </Box>
-        </Box>
+          {/* <Box
+            gridColumn="span 12"
+            gridRow="span 2"
+            backgroundColor={colors.primary[400]}
+            style={{borderRadius: '20px'}}
+          >
+            <Typography
+              variant="h5"
+              fontWeight="600"
+              sx={{ padding: "20px 30px 10px 30px" }}
+              style={{color: 'black'}}
+            >
+              {data}
+            </Typography>
+          </Box> */}
+      </Box>
       </div>
     </Container>
   );

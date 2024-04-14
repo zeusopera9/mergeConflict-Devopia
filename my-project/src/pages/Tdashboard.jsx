@@ -31,7 +31,7 @@ const Tdashboard = () => {
                                 <strong>Email:</strong> {user.email} <br />
                                 <strong>First name:</strong> {user.fname} <br />
                                 <strong>Last name:</strong> {user.lname}
-                                <button className="bg-white ml-8">View Quiz Score</button>
+                                <button className="bg-white ml-8" onClick={handleClick()}>View Quiz Score</button>
                             </li>
                         ))}
                     </ul>

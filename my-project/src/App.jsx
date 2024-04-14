@@ -27,7 +27,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path='/chat' element={<Chat />} />
         <Route path='/quiz' element={<Quiz />} />
-        <Route path='/tdashboard' element={<Tdashboard />} />
+        <Route path='/teacherdashboard' element={<Tdashboard />} />
         <Route path='/feedback' element={<Feedback />} />
         <Route path='/learning' element={<LearningResource />} />
       </Routes>

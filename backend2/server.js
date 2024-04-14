@@ -342,7 +342,7 @@ app.get('/quizzes', async (req, res) => {
 // Endpoint to run the Python script
 app.get('/runPythonScript', (req, res) => {
   // Path to your Python script
-  const pythonScriptPath = 'C:/Users/zaida/Desktop/mergeConflict-Devopia/backend2/transp.py';
+  const pythonScriptPath = 'C:/Users/Yakshit/Desktop/mergeConflict-Devopia/backend2/transp.py';
 
   // Arguments to pass to the Python script (if any)
   const args = [];
