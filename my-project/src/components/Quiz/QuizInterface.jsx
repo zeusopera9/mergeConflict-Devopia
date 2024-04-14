@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const QuizInterface = (props) => {
+const QuizInterface = () => {
   const [questions, setQuestions] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState('');
@@ -13,7 +13,7 @@ const QuizInterface = (props) => {
   useEffect(() => {
     const fetchQuizQuestions = async () => {
       try {
-        const response = await fetch(`https://opentdb.com/api.php?amount=10&category=22&difficulty=medium&type=boolean`);
+        const response = await fetch('https://opentdb.com/api.php?amount=10&category=22&difficulty=medium&type=boolean');
         const data = await response.json();
         if (data.results && data.results.length > 0) {
           setQuestions(data.results);
@@ -60,11 +60,17 @@ const QuizInterface = (props) => {
     }
   };
 
-  useEffect(() => {
-    if (quizCompleted) {
-      handleQuizCompletion();
-    }
-  }, [quizCompleted]); // Run this effect only when quizCompleted changes
+  // console.log(userResponses);
+
+  if (quizCompleted) {
+    handleQuizCompletion(); // Call handleQuizCompletion when quiz is completed
+    return (
+      <div>
+        <h2>Quiz Completed!</h2>
+        <p>Your Score: {score}/{questions.length}</p>
+      </div>
+    );
+  }
 
   return (
     <div>

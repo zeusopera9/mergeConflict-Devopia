@@ -28,6 +28,9 @@ const Header = () => {
             setLoggedIn(false);
             setEmail('');
             localStorage.removeItem("email");
+            if(localStorage.getItem("code") != null) {
+                localStorage.removeItem("code");
+            }
         } catch (error) {
             console.error('Error logging out:', error);
         }
