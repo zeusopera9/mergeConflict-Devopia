@@ -1,38 +1,44 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useState, useEffect } from 'react';
 
 const Feedback = () => {
-    const [quiz, setQuiz] = useState([]);
+    const [quizzes, setQuizzes] = useState([]);
 
     useEffect(() => {
-        const fetchQuiz = async () => {
+        const fetchQuizzes = async () => {
             try {
                 const response = await axios.get('http://localhost:7000/quizzes');
-                setQuiz(response.data);
+                setQuizzes(response.data);
             } catch (error) {
                 console.error('Error fetching quiz data:', error);
             }
         };
 
-        fetchQuiz();
+        fetchQuizzes();
     }, []);
-  return (
-    <div>
-        <h1>Feedback!</h1> 
-        <h2>Quiz</h2>
-        <ul style={{ listStyle: 'none', padding: 0 }}>
-            {quiz.map(quiz => (
-                <li key={quiz._id} style={{ marginBottom: '8px', backgroundColor: '#EADBC8', padding: '8px', borderRadius: '4px', color: 'black' }}>
-                    <strong>Question:</strong> {quiz.responses[0].question} <br />
-                    <strong>Student's Answer:</strong> {quiz.responses[0].answer} <br />
-                    <strong>Correct Answer:</strong> {quiz.responses[0].correct} <br />
 
-                </li>
-            ))}
-        </ul> 
-    </div>
-  )
-}
+    return (
+        <div style={{ height: '100vh', overflowY: 'auto' }}>
+            <h1>Feedback!</h1>
+            <h2>Quiz</h2>
+            <ul style={{ listStyle: 'none', padding: 0 }}>
+                {quizzes.map((quiz) => (
+                    <li key={quiz._id} style={{ marginBottom: '16px', backgroundColor: '#EADBC8', padding: '16px', borderRadius: '4px', color: 'black' }}>
+                        <h3>Quiz for {quiz.userEmail}</h3>
+                        <ul style={{ listStyle: 'none', padding: 0 }}>
+                            {quiz.responses.map((response, index) => (
+                                <li key={response._id} style={{ marginBottom: '8px' }}>
+                                    <strong>Question:</strong> {response.question} <br />
+                                    <strong>Student's Answer:</strong> {response.answer} <br />
+                                    <strong>Correct Answer:</strong> {response.correct ? 'True' : 'False'} <br />
+                                </li>
+                            ))}
+                        </ul>
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
+};
 
-export default Feedback
+export default Feedback;

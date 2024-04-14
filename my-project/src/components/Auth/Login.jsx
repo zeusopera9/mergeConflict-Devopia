@@ -14,9 +14,9 @@ const Login = () => {
       if (response.data.status === 'success') {
         console.log('Logged in successfully!');
         localStorage.setItem('email', response.data.user.email);
-        if(response.data.user.code) {
-          localStorage.setItem('code', response.data.user.code);
-        }
+        // if(response.data.teacher.code) {
+        //   localStorage.setItem('code', response.data.teacher.code);
+        // }
         window.location.href = '/';
       } else {
         setError(response.data.message);
