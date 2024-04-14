@@ -399,164 +399,92 @@ export const mockPieData = [
 
 export const mockLineData = [
   {
-    id: "japan",
+    id: "7th",
     color: tokens("dark").greenAccent[500],
     data: [
       {
-        x: "plane",
-        y: 101,
+        x: "English",
+        y: 80,
       },
       {
-        x: "helicopter",
+        x: "Hindi",
         y: 75,
       },
       {
-        x: "boat",
-        y: 36,
+        x: "Maths",
+        y: 60,
       },
       {
-        x: "train",
-        y: 216,
+        x: "Science",
+        y: 44,
       },
       {
-        x: "subway",
-        y: 35,
+        x: "History",
+        y: 77,
       },
       {
-        x: "bus",
-        y: 236,
-      },
-      {
-        x: "car",
-        y: 88,
-      },
-      {
-        x: "moto",
-        y: 232,
-      },
-      {
-        x: "bicycle",
-        y: 281,
-      },
-      {
-        x: "horse",
-        y: 1,
-      },
-      {
-        x: "skateboard",
-        y: 35,
-      },
-      {
-        x: "others",
-        y: 14,
+        x: "Geography",
+        y: 33,
       },
     ],
   },
   {
-    id: "france",
+    id: "8th",
     color: tokens("dark").blueAccent[300],
     data: [
       {
-        x: "plane",
-        y: 212,
+        x: "English",
+        y: 71,
       },
       {
-        x: "helicopter",
-        y: 190,
+        x: "Hindi",
+        y: 91,
       },
       {
-        x: "boat",
-        y: 270,
+        x: "Maths",
+        y: 66,
       },
       {
-        x: "train",
-        y: 9,
+        x: "Science",
+        y: 35,
       },
       {
-        x: "subway",
-        y: 75,
+        x: "History",
+        y: 76,
       },
       {
-        x: "bus",
-        y: 175,
-      },
-      {
-        x: "car",
-        y: 33,
-      },
-      {
-        x: "moto",
-        y: 189,
-      },
-      {
-        x: "bicycle",
-        y: 97,
-      },
-      {
-        x: "horse",
-        y: 87,
-      },
-      {
-        x: "skateboard",
-        y: 299,
-      },
-      {
-        x: "others",
-        y: 251,
+        x: "Geography",
+        y: 88,
       },
     ],
   },
   {
-    id: "us",
+    id: "9th",
     color: tokens("dark").redAccent[200],
     data: [
       {
-        x: "plane",
-        y: 191,
+        x: "English",
+        y: 81,
       },
       {
-        x: "helicopter",
-        y: 136,
+        x: "Hindi",
+        y: 60,
       },
       {
-        x: "boat",
-        y: 91,
+        x: "Maths",
+        y: 71,
       },
       {
-        x: "train",
-        y: 190,
+        x: "Science",
+        y: 66,
       },
       {
-        x: "subway",
-        y: 211,
+        x: "History",
+        y: 71,
       },
       {
-        x: "bus",
-        y: 152,
-      },
-      {
-        x: "car",
-        y: 189,
-      },
-      {
-        x: "moto",
-        y: 152,
-      },
-      {
-        x: "bicycle",
-        y: 8,
-      },
-      {
-        x: "horse",
-        y: 197,
-      },
-      {
-        x: "skateboard",
-        y: 107,
-      },
-      {
-        x: "others",
-        y: 170,
+        x: "Geography",
+        y: 89,
       },
     ],
   },
