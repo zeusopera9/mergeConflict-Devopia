@@ -21,7 +21,6 @@ const Dashboard = () => {
 
   return (
     <Container className="w-screen flex flex-row flex-nowrap" style={{ flex: 1,  alignContent: 'start', justifyContent: 'start' }}>
-      {/* <Sidebar /> */}
       <div className="flex-[0.7] ml-32">
         <Box
           display="grid"

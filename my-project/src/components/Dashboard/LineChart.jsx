@@ -8,29 +8,10 @@ import React, { useState, useEffect } from "react";
 const LineChart = ({ isCustomLineColors = false, isDashboard = false }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const [chartData, setChartData] = useState(null);
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await fetch("http://localhost:7000/marks");
-  //       const data = await response.json();
-  //       setChartData(data);
-  //     } catch (error) {
-  //       console.error("Error fetching data:", error);
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, []); 
-
-  if (!chartData) {
-    return <div>Loading...</div>;
-  }
 
   return (
     <ResponsiveLine
-      data={chartData}
+      data={data}
       theme={{
         axis: {
           domain: {
