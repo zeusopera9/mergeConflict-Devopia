@@ -10,6 +10,8 @@ import Header from './components/Global/Header';
 import Footer from './components/Global/Footer';
 import Chat from './pages/Chat';
 import Quiz from './pages/Quiz';
+import Tdashboard from './pages/Tdashboard';
+import Feedback from './pages/Feedback';
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path='/chat' element={<Chat />} />
         <Route path='/quiz' element={<Quiz />} />
+        <Route path='/tdashboard' element={<Tdashboard />} />
+        <Route path='/feedback' element={<Feedback />} />
       </Routes>
       {window.location.pathname !== '/layout' && (
         <>

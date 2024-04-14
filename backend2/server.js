@@ -314,6 +314,27 @@ app.get('/marks', async (req, res) => {
   }
 });
 
+// getting user data:
+app.get('/user', async (req, res) => {
+  try {
+    const users = await User.find();
+    res.json(users);
+  } catch (error) {
+    console.error('Error fetching user data:', error);
+    res.status(500).json({ error: 'Error fetching user data' });
+  }
+});
+
+// getting quiz data:
+app.get('/quizzes', async (req, res) => {
+  try {
+    const quizResponses = await Quiz.find();
+    res.json(quizResponses);
+  } catch (error) {
+    console.error('Error fetching quiz data:', error);
+    res.status(500).json({ error: 'Error fetching quiz data' });
+  }
+});
 
 app.listen(7000, () => {
   console.log("Server is running on port 7000");
