@@ -18,7 +18,7 @@ const Feedback = () => {
     }, []);
 
     return (
-        <div style={{ height: '100vh', overflowY: 'auto' }}>
+        <div style={{ height: '100vh', overflowY: 'auto', marginTop: '3%' }}>
             <h1>Feedback!</h1>
             <h2>Quiz</h2>
             <ul style={{ listStyle: 'none', padding: 0 }}>
