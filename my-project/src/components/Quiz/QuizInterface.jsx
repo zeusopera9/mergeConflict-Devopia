@@ -31,22 +31,18 @@ const QuizInterface = () => {
   };
 
   const handleNextQuestion = () => {
-    // Check if the selected answer is correct
     const currentQuestion = questions[currentQuestionIndex];
     const isCorrect = selectedAnswer.toLowerCase() === currentQuestion.correct_answer.toLowerCase();
     if (isCorrect) {
       setScore(score + 1);
     }
 
-    // Add the response to the userResponses array
     setUserResponses([...userResponses, { question: currentQuestion.question, answer: selectedAnswer, correct: isCorrect }]);
 
-    // Move to the next question
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
       setSelectedAnswer('');
     } else {
-      // Quiz completed
       setQuizCompleted(true);
     }
   };
@@ -60,7 +56,6 @@ const QuizInterface = () => {
     }
   };
 
-  // console.log(userResponses);
 
   if (quizCompleted) {
     handleQuizCompletion(); // Call handleQuizCompletion when quiz is completed

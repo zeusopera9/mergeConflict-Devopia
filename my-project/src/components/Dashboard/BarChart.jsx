@@ -5,7 +5,7 @@ const PerformanceChart = () => {
 
   return (
     <BarChart
-      xAxis={[{ scaleType: 'band', data: ['group A', 'group B'] }]}
+      xAxis={[{ scaleType: 'band', data: ['Predicted Score', 'Current Score'] }]}
       series={[{ data: [4, 3] }]}
       width={500}
       height={300}
